@@ -14,7 +14,7 @@ const {getMovies, getMovie, deleteMovie, patchMovie, postMovie} = require('./api
 //this will be for the loading animation//
 const loadMovies = () => {
     $('#load').show();
-}
+};
 
 
 getMovies().then((movies) => {
@@ -36,8 +36,16 @@ getMovie(1).then(movies => {
 
 
 postMovie({
-    "title": "Casablanca",
-    "rating": "4",
-    "id": 1
-})
+    "title": "Bee Movie",
+    "rating": "1",
+
+}).then(getMovies()).then((movies) => {
+  console.log('Here are all the movies:');
+    movies.forEach(({title, rating, id}) => {
+        console.log(`id#${id} - ${title} - rating: ${rating}`);
+  });
+}).catch(() =>
+  console.log("error"));
+
+
 
