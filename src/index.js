@@ -11,7 +11,7 @@ import $ from "jquery";
 const {getMovies} = require('./api.js');
 
 const APIFront = 'http://www.omdbapi.com/?t=';
-const APIBack = "&apikey=f0a8feca";
+const APIBack = "&apikey=d18aa323";
 /**
  * require style imports
  */
@@ -64,10 +64,10 @@ function render(){
     getMovies().then((movies)=> {
         let output = '';
         movies.forEach(({title, rating, id, genre, image}) =>{
-            output += '<div class="movieStats col-sm-12 col-md-3 border border-dark p-0"><h2 class="m-0">Title: ' + title + '</h2>';
+            output += '<div class="movieStats col-sm-12 col-md-3 border border-dark p-0"><h2 class="m-0">' + title + '</h2>';
             output += '<p class="m-0">Rating: ' + rating + '</p>';
             output += '<p class="m-0">Genre: ' + genre + '</p>';
-            output += '<p class="m-0">ID: ' + id + '</p>';
+            // output += '<p class="m-0">ID: ' + id + '</p>';
             output += '<button class="editBtn text-hide" data-toggle="modal" data-target="#editModal"><img src="edit.png"></button>';
             output += '<button class="deleteBtn btn"><img src="delete.png"></button><br>';
             output += `<img class="poster" data-toggle="modal" data-target="#exampleModalCenter" src="${image}"></div>`;
@@ -111,7 +111,7 @@ function render(){
         $('.poster').click(function () {
 
             //      $(this).parent().children().next().css('background-color', 'yellow');
-            let title = $(this).parent().children().first().html().slice(7);
+            let title = $(this).parent().children().first().html();
             console.log(title);
 
             $.ajax(APIFront + title + APIBack).done((data) => {
@@ -239,10 +239,10 @@ $('#sortBy').change(function () {
             let output = '';
 
             movies.forEach(({title, rating, id, genre, image}) => {
-                output += '<div class="movieStats col-sm-12 col-md-3 border border-dark p-0"><marquee class="m-0">Title: ' + title + '</marquee>';
+                output += '<div class="movieStats col-sm-12 col-md-3 border border-dark p-0"><h1 class="m-0">' + title + '</h1>';
                 output += '<p class="m-0">Rating: ' + rating + '</p>';
                 output += '<p class="m-0">Genre: ' + genre + '</p>';
-                output += '<p class="m-0">ID: ' + id + '</p>';
+                // output += '<p class="m-0">ID: ' + id + '</p>';
                 output += '<button class="editBtn text-hide" data-toggle="modal" data-target="#editModal"><img src="edit.png"></button>';
                 output += '<button class="deleteBtn btn"><img src="delete.png"></button><br>';
                 output += `<img class="poster" data-toggle="modal" data-target="#exampleModalCenter" src="${image}"></div>`;
@@ -253,7 +253,7 @@ $('#sortBy').change(function () {
                 $('.poster').click(function () {
 
                     //      $(this).parent().children().next().css('background-color', 'yellow');
-                    let title = $(this).parent().children().first().html().slice(7);
+                    let title = $(this).parent().children().first().html();
                     console.log(title);
 
                     $.ajax(APIFront + title + APIBack).done((data) => {

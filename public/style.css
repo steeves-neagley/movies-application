@@ -2,11 +2,128 @@ html, body {
     height: 100%;
 }
 
-.container {
+
+html, body {
+    height: 100vh;
+    background-color: lightsteelblue;
+}
+
+h1 {
+    text-shadow: 1px 1px yellow;
+    background-color: whitesmoke;
+    border: 1px solid black;
+}
+
+marquee {
+    font-size: 2em;
+    text-shadow: 1px 1px 1px black;
+}
+
+.container2 {
     position: relative;
     top: 50%;
     transform: translateY(-100%);
     text-align: center;
+}
+
+.mainContentBody {
+    background-color: cadetblue;
+    border: 2px solid black;
+    box-shadow: 1px 1px 20px black, 0 0 20px cornflowerblue inset;
+}
+
+.movieStats {
+    background-color: whitesmoke;
+    box-shadow: 1px 1px black;
+}
+
+.movieStats:before {
+}
+
+.addMovieBtn {
+    width: 100%;
+    padding: 20px;
+    background: radial-gradient(greenyellow 25%,  mediumseagreen 75%);
+    box-shadow: 1px 1px 1px black;
+    border-radius: 20%;
+}
+
+.addMovieBtn:hover {
+    background: radial-gradient(mediumspringgreen 90%, greenyellow 10%);
+    opacity: 0.8;
+}
+
+.editBtn {
+
+}
+
+
+
+.miniPoster {
+    float: left;
+    width: 175px;
+    border: 1px solid black;
+}
+
+.editBtn:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.deleteBtn {
+    background: transparent;
+}
+
+
+#addMovie {
+    width: 100%;
+    background-color: lightsteelblue;
+    box-shadow: 1px 3px black;
+    border: 2px solid black;
+}
+
+#edit{
+    margin-top: 3em;
+    /*display: none;*/
+    width: 50%;
+    background-color: floralwhite;
+    box-shadow: 1px 1px 3px black;
+    border: 2px solid black;
+}
+
+#sortBy option {
+    padding: 20px;
+
+}
+
+
+
+@media (min-width: 575.98px) {
+
+    .poster{
+        width: 200px;
+    }
+
+    .movieStats {
+        width: 200px;
+        background-color: whitesmoke;
+        box-shadow: 1px 1px black;
+    }
+
+    .addMovieBtn {
+        width: 15%;
+    }
+
+    .miniPoster {
+        float: left;
+        width: 250px;
+        border: 1px solid black;
+    }
+
+    .plotText {
+        margin-left: 270px;
+    }
+
 }
 h1 {
     font-family: 'WaltographRegular';
