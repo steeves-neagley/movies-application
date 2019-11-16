@@ -4,41 +4,26 @@
       "title": "Casablanca",
       "rating": "4",
       "id": 1
+      "image":
     },
     {
       "title": "Star Wars: A New Hope",
       "rating": "5",
       "id": 2
+      "image":
     },
     {
       "title": "Lion King",
       "rating": "5",
       "id": 3
+      "image":
     },
     {
+      "image": "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjhh9TFlO_lAhVLIKwKHQhqCaoQjRx6BAgBEAQ&url=https%3A%2F%2Fwww.redbookmag.com%2Flife%2Fmom-kids%2Fg22559664%2Fbest-disney-movies%2F&psig=AOvVaw1jX2KV6zJZzO4zv6rc-xbp&ust=1574008223304292"
+
       "title": "Bee Movie",
       "rating": "1",
       "id": 4
-    },
-    {
-      "title": "Bee Movie",
-      "rating": "1",
-      "id": 5
-    },
-    {
-      "title": "Bee Movie",
-      "rating": "1",
-      "id": 6
-    },
-    {
-      "title": "Bee Movie",
-      "rating": "1",
-      "id": 7
-    },
-    {
-      "title": "Bee Movie",
-      "rating": "1",
-      "id": 8
     }
   ]
 }

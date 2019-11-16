@@ -8,3 +8,8 @@ html, body {
     transform: translateY(-100%);
     text-align: center;
 }
+h1 {
+    font-family: 'WaltographRegular';
+    font-weight: normal;
+    font-style: normal;
+}
