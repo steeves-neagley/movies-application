@@ -5,19 +5,20 @@ html, body {
 
 html, body {
     height: 100vh;
-    background-color: lightsteelblue;
+    background-image: url("../img/did.png");
+    /*background-color: darkslateblue;*/
 }
 
 h1 {
-    text-shadow: 1px 1px yellow;
+    text-shadow: 1px 1px rgb(219, 223, 192);
     background-color: whitesmoke;
     border: 1px solid black;
 }
 
-marquee {
-    font-size: 2em;
-    text-shadow: 1px 1px 1px black;
-}
+/*marquee {*/
+    /*font-size: 2em;*/
+    /*text-shadow: 1px 1px 1px black;*/
+/*}*/
 
 .container2 {
     position: relative;
@@ -27,9 +28,12 @@ marquee {
 }
 
 .mainContentBody {
-    background-color: cadetblue;
+    background: rgb(194, 229, 225);
+    /*background-color: rgb(125, 154, 162);*/
+    /*background-color: rgb(213, 219, 221);*/
+    /*background-color: cadetblue;*/
     border: 2px solid black;
-    box-shadow: 1px 1px 20px black, 0 0 20px cornflowerblue inset;
+    box-shadow: 1px 1px 20px black, 0 0 70px rgb(155,180,220) inset;
 }
 
 .movieStats {
@@ -43,14 +47,17 @@ marquee {
 .addMovieBtn {
     width: 100%;
     padding: 20px;
-    background: radial-gradient(greenyellow 25%,  mediumseagreen 75%);
+    background: rgb(213, 219, 221);
+    /*background: rgb(209, 197, 234);*/
+    /*background: radial-gradient(greenyellow 25%,  mediumseagreen 75%);*/
     box-shadow: 1px 1px 1px black;
     border-radius: 20%;
 }
 
 .addMovieBtn:hover {
-    background: radial-gradient(mediumspringgreen 90%, greenyellow 10%);
-    opacity: 0.8;
+    background: rgb(125, 154, 162);
+    /*background: radial-gradient(mediumspringgreen 90%, greenyellow 10%);*/
+    opacity: 0.9;
 }
 
 .editBtn {
@@ -127,6 +134,7 @@ marquee {
 }
 h1 {
     font-family: 'WaltographRegular';
+    /*color: rgb(168, 183, 188);*/
     font-weight: normal;
     font-style: normal;
 }
