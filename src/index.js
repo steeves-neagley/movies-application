@@ -60,9 +60,9 @@ function render(){
     getMovies().then((movies)=> {
         let output = '';
         movies.forEach(({title, rating, id, genre, image}) =>{
-            output += '<div id="movieId-' + id + '" class="movieStats col-sm-12 col-md-3 border border-dark p-0"><h3 class="m-0">' + title + '</h3>';
-            output += '<p class="m-0">Rating: ' + rating + '</p>';
-            output += '<p class="m-0">Genre: ' + genre + '</p>';
+            output += '<div id="movieId- title' + id + '" class="movieStats col-sm-12 col-md-3 border border-dark p-0"><h3 class="m-0">' + title + '</h3>';
+            output += '<p id="rating" class="m-0">Rating: ' + rating + '</p>';
+            output += '<p id="genre" class="m-0">Genre: ' + genre + '</p>';
             output += '<button class="editBtn text-hide" data-toggle="modal" data-target="#editModal"><img src="img/edit.png" alt="" width="25px"></button>';
             output += '<button class="deleteBtn btn"><img src="img/delete.png" alt="" width="25px"></button><br>';
             output += `<img class="poster" data-toggle="modal" data-target="#exampleModalCenter" src="${image}"></div>`;
@@ -97,7 +97,6 @@ function render(){
             fetch(`./api/movies/${movieId}`, {
                 method: 'DELETE',}
             )
-
         });
 
 
@@ -162,7 +161,9 @@ const saveNewMovie = (e) => {
 const editMovie = (e) => {
     e.preventDefault();
     let movieTitle = $('#editTitle').val();
+    console.log(movieTitle);
     let movieRating = $('#editRating').val();
+    console.log(movieRating);
     let movieId = $('#editId').val();
     let movieGenre = $('#editGenre').val();
     let newMovie = {
@@ -170,14 +171,14 @@ const editMovie = (e) => {
         "rating": movieRating,
         "genre": movieGenre
     };
-    return fetch(`./api/movies/${movieId}`, {
+    fetch(`./api/movies/${movieId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(newMovie)}
     )
-        .then(renderMovies);
+        // .then(renderMovies);
 };
 
 
