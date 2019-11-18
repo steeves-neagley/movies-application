@@ -1,21 +1,17 @@
 /**
  * es6 modules and imports
  */
-// import sayHello from './hello';
-// sayHello('World');
 
 import $ from "jquery";
-
-
 
 const {getMovies} = require('./api.js');
 
 const APIFront = 'http://www.omdbapi.com/?t=';
 const APIBack = "&apikey=d18aa323";
+
 /**
  * require style imports
  */
-
 
 
 function renderMovies() {
@@ -60,16 +56,15 @@ function render(){
     if (!$('.container').hasClass('container2')) {
         $('.container').addClass('container2');
     }
-    $('#bodyText').html('<div class="col display-1"><p>"please work"</p><img src="../public/img/loadingbar.svg">\n</div>');
+    $('#bodyText').html('<div class="col display-1"><p>"please work"</p><img src="img/loadbar2.svg" alt="gif">\n</div>');
     getMovies().then((movies)=> {
         let output = '';
         movies.forEach(({title, rating, id, genre, image}) =>{
-            output += '<div class="movieStats col-sm-12 col-md-3 border border-dark p-0"><h2 class="m-0">' + title + '</h2>';
+            output += '<div id="movieId-' + id + '" class="movieStats col-sm-12 col-md-3 border border-dark p-0"><h3 class="m-0">' + title + '</h3>';
             output += '<p class="m-0">Rating: ' + rating + '</p>';
             output += '<p class="m-0">Genre: ' + genre + '</p>';
-            // output += '<p class="m-0">ID: ' + id + '</p>';
-            output += '<button class="editBtn text-hide" data-toggle="modal" data-target="#editModal"><img src="../public/img/edit.png" alt="editicon"></button>';
-            output += '<button class="deleteBtn btn"><img src="../public/img/delete.png"></button><br>';
+            output += '<button class="editBtn text-hide" data-toggle="modal" data-target="#editModal"><img src="img/edit.png" alt="" width="25px"></button>';
+            output += '<button class="deleteBtn btn"><img src="img/delete.png" alt="" width="25px"></button><br>';
             output += `<img class="poster" data-toggle="modal" data-target="#exampleModalCenter" src="${image}"></div>`;
             //Can remove the data-toggle as is for the
             // modals for information on movies with
@@ -84,7 +79,7 @@ function render(){
             let rating = $(this).parent().children().next().html();
             let movieId = $(this).parent().children().next().next().next().html();
 
-            let formattedTitle = title.slice(7);
+            let formattedTitle = title;
             let formattedRating = rating.slice(8);
             let formattedId = movieId.slice(4);
 
@@ -95,22 +90,22 @@ function render(){
         });
 
         $('.deleteBtn').click(function () {
-            let movieId = $(this).parent().children().next().next().next().html().slice(4);
+            let movieId = $(this).parent().attr("id");
+            console.log(movieId);
+            movieId =  movieId.split("-")[1];
             $(this).parent().fadeOut("slow");
-            return fetch(`./api/movies/${movieId}`, {
+            fetch(`./api/movies/${movieId}`, {
                 method: 'DELETE',}
-            ).then(getMovies)
-                .then(render);
+            )
 
         });
 
 
 
-        //// Attempted to add data poster
+        // Adding data poster
 
         $('.poster').click(function () {
 
-            //      $(this).parent().children().next().css('background-color', 'yellow');
             let title = $(this).parent().children().first().html();
             console.log(title);
 
@@ -132,7 +127,7 @@ function render(){
             });
 
 
-            //// End
+            // End
 
         });
 
@@ -147,16 +142,11 @@ const saveNewMovie = (e) => {
     let movieRating = $('#titleRating').val();
     let movieGenre = $('#addGenre').val();
 
-    // let posterURL = $.ajax(APIFront + movieTitle + APIBack).done((data) =>{
-    //     console.log(data, data.Poster);
-    //     return(data.Poster);
-    // });
 
     let newMovie = {
         "title": movieTitle,
         "rating": movieRating,
         "genre": movieGenre,
-        // "image": posterURL
     };
 
     fetch('/api/movies', {
@@ -239,12 +229,11 @@ $('#sortBy').change(function () {
             let output = '';
 
             movies.forEach(({title, rating, id, genre, image}) => {
-                output += '<div class="movieStats col-sm-12 col-md-3 border border-dark p-0"><h1 class="m-0">' + title + '</h1>';
+                output += '<div class="movieStats col-sm-12 col-md-3 border border-dark p-0"><h3 class="m-0">' + title + '</h3>';
                 output += '<p class="m-0">Rating: ' + rating + '</p>';
                 output += '<p class="m-0">Genre: ' + genre + '</p>';
-                // output += '<p class="m-0">ID: ' + id + '</p>';
-                output += '<button class="editBtn text-hide" data-toggle="modal" data-target="#editModal"> <img src="../public/img/edit.png"</button>';
-                output += '<button class="deleteBtn btn"> <img src="../public/img/delete.png"></button><br>';
+                output += '<button class="editBtn text-hide" data-toggle="modal" data-target="#editModal"> <img src="img/edit.png" width="25px"></button>';
+                output += '<button class="deleteBtn btn"> <img src="img/delete.png" width="25px"></button><br>';
                 output += `<img class="poster" data-toggle="modal" data-target="#exampleModalCenter" src="${image}"></div>`;
 
 
@@ -252,7 +241,6 @@ $('#sortBy').change(function () {
 
                 $('.poster').click(function () {
 
-                    //      $(this).parent().children().next().css('background-color', 'yellow');
                     let title = $(this).parent().children().first().html();
                     console.log(title);
 
