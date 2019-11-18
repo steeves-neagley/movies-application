@@ -56,7 +56,14 @@ function render(){
     if (!$('.container').hasClass('container2')) {
         $('.container').addClass('container2');
     }
+
+    //----------------- DISPLAY LOADING ICON -----------------------
+
     $('#bodyText').html('<div class="col display-1"><p>"please work"</p><img src="img/loadbar2.svg" alt="gif">\n</div>');
+
+
+    //----------------- BUILDING MOVIE CARDS -----------------------
+
     getMovies().then((movies)=> {
         let output = '';
         movies.forEach(({title, rating, id, genre, image}) =>{
@@ -74,20 +81,27 @@ function render(){
         $('#bodyText').html(output);
 
 
+//----------------- EDIT BUTTON ON CLICK FUNCTION -----------------
+
+
         $('.editBtn').click(function() {
             let title = $(this).parent().children().first().html();
             let rating = $(this).parent().children().next().html();
-            let movieId = $(this).parent().children().next().next().next().html();
-
+            let movieId = $(this).parent().attr("id");
+            console.log(movieId);
             let formattedTitle = title;
             let formattedRating = rating.slice(8);
-            let formattedId = movieId.slice(4);
+            let formattedId = movieId.split("-")[1];
 
             $('#editTitle').val(formattedTitle);
             $('#editRating').val(formattedRating);
             $('#editId').val(formattedId);
 
         });
+
+
+// --------------- DELETE ON CLICK FUNCTION ----------------------
+
 
         $('.deleteBtn').click(function () {
             let movieId = $(this).parent().attr("id");
@@ -101,7 +115,7 @@ function render(){
 
 
 
-        // Adding data poster
+        //--------------- FOR RENDER, POSTER ONCLICK INFO CARD ------------
 
         $('.poster').click(function () {
 
@@ -125,15 +139,21 @@ function render(){
 
             });
 
-
-            // End
-
         });
 
     });
+
+
+    //--------------- REMOVES LOADING GIF ------------------
+
+
     $(".container").removeClass(' container2 ')
 }
 document.getElementsByTagName('body')[0].onload = render();
+
+
+//----------------- ADD A MOVIE CARD ----------------
+
 
 const saveNewMovie = (e) => {
     e.preventDefault();
@@ -158,6 +178,10 @@ const saveNewMovie = (e) => {
         .then(renderMovies);
 };
 
+
+//---------------- EDITING CURRENT MOVIE ----------------
+
+
 const editMovie = (e) => {
     e.preventDefault();
     let movieTitle = $('#editTitle').val();
@@ -165,7 +189,9 @@ const editMovie = (e) => {
     let movieRating = $('#editRating').val();
     console.log(movieRating);
     let movieId = $('#editId').val();
+    console.log(movieId);
     let movieGenre = $('#editGenre').val();
+    console.log(movieGenre);
     let newMovie = {
         "title": movieTitle,
         "rating": movieRating,
@@ -181,10 +207,15 @@ const editMovie = (e) => {
         // .then(renderMovies);
 };
 
+//------------ ADD NEW MOVIE BUTTON -------
 
 $('#formSubmit').click(saveNewMovie);
 
+//------------- EDIT CURRENT MOVIE BUTTON ------
+
 $('#editSubmit').click(editMovie);
+
+//-------------- SORT FUNCTION ----------------
 
 $('#sortBy').change(function () {
     getMovies().then((movies) => {
@@ -229,6 +260,9 @@ $('#sortBy').change(function () {
             });
             let output = '';
 
+
+            //------------- OUTPUT OF SORTED MOVIES ----------------------
+
             movies.forEach(({title, rating, id, genre, image}) => {
                 output += '<div class="movieStats col-sm-12 col-md-3 border border-dark p-0"><h3 class="m-0">' + title + '</h3>';
                 output += '<p class="m-0">Rating: ' + rating + '</p>';
@@ -240,10 +274,14 @@ $('#sortBy').change(function () {
 
                 $('#bodyText').html(output);
 
+
+                //---------------- FOR SORT, POSTER ONCLICK FUNCTION -------------
+
                 $('.poster').click(function () {
 
                     let title = $(this).parent().children().first().html();
                     console.log(title);
+
 
                     $.ajax(APIFront + title + APIBack).done((data) => {
                         console.log(data);
