@@ -60,7 +60,7 @@ function render(){
     if (!$('.container').hasClass('container2')) {
         $('.container').addClass('container2');
     }
-    $('#bodyText').html('<div class="col display-1"><img src="loader.gif">\n</div>');
+    $('#bodyText').html('<div class="col display-1"><p>"please work"</p><img src="../public/img/loadingbar.svg">\n</div>');
     getMovies().then((movies)=> {
         let output = '';
         movies.forEach(({title, rating, id, genre, image}) =>{
@@ -68,8 +68,8 @@ function render(){
             output += '<p class="m-0">Rating: ' + rating + '</p>';
             output += '<p class="m-0">Genre: ' + genre + '</p>';
             // output += '<p class="m-0">ID: ' + id + '</p>';
-            output += '<button class="editBtn text-hide" data-toggle="modal" data-target="#editModal"><img src="edit.png"></button>';
-            output += '<button class="deleteBtn btn"><img src="delete.png"></button><br>';
+            output += '<button class="editBtn text-hide" data-toggle="modal" data-target="#editModal"><img src="../public/img/edit.png" alt="editicon"></button>';
+            output += '<button class="deleteBtn btn"><img src="../public/img/delete.png"></button><br>';
             output += `<img class="poster" data-toggle="modal" data-target="#exampleModalCenter" src="${image}"></div>`;
             //Can remove the data-toggle as is for the
             // modals for information on movies with
@@ -243,8 +243,8 @@ $('#sortBy').change(function () {
                 output += '<p class="m-0">Rating: ' + rating + '</p>';
                 output += '<p class="m-0">Genre: ' + genre + '</p>';
                 // output += '<p class="m-0">ID: ' + id + '</p>';
-                output += '<button class="editBtn text-hide" data-toggle="modal" data-target="#editModal"><img src="edit.png"></button>';
-                output += '<button class="deleteBtn btn"><img src="delete.png"></button><br>';
+                output += '<button class="editBtn text-hide" data-toggle="modal" data-target="#editModal"> <img src="../public/img/edit.png"</button>';
+                output += '<button class="deleteBtn btn"> <img src="../public/img/delete.png"></button><br>';
                 output += `<img class="poster" data-toggle="modal" data-target="#exampleModalCenter" src="${image}"></div>`;
 
 
@@ -281,43 +281,6 @@ $('#sortBy').change(function () {
 
 
 
-// const {getMovies, getMovie, deleteMovie, patchMovie, postMovie} = require('./api.js');
-//
-// //this will be for the loading animation//
-// const loadMovies = () => {
-//     $('#load').show();
-// };
-//
-//
-// getMovies().then((movies) => {
-//     console.log('Here are all the movies:');
-//     movies.forEach(({title, rating, id}) => {
-//         console.log(`id#${id} - ${title} - rating: ${rating}`);
-//     });
-// }).catch((error) => {
-//     alert('Oh no! Something went wrong.\nCheck the console for details.')
-//     console.log(error);
-// });
-//
-//
-// getMovie(1).then(movies => {
-//     console.log('Here is the movie:');
-//         console.log(`${movies.title} ${movies.rating}`);
-//     }).catch(() =>
-//     console.log('error, this did not work'));
-//
-//
-// postMovie({
-//     "title": "Bee Movie",
-//     "rating": "1",
-//
-// }).then(getMovies()).then((movies) => {
-//   console.log('Here are all the movies:');
-//     movies.forEach(({title, rating, id}) => {
-//         console.log(`id#${id} - ${title} - rating: ${rating}`);
-//   });
-// }).catch(() =>
-//   console.log("error"));
 
 
 
