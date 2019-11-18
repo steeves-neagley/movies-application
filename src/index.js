@@ -12,7 +12,7 @@ const APIBack = "&apikey=d18aa323";
 /**
  * require style imports
  */
-
+let formattedId;
 
 function renderMovies() {
     getMovies().then((movies) => {
@@ -59,7 +59,7 @@ function render(){
 
     //----------------- DISPLAY LOADING ICON -----------------------
 
-    $('#bodyText').html('<div class="col display-1"><p>"please work"</p><img src="img/loadbar2.svg" alt="gif">\n</div>');
+    $('#bodyText').html('<div class="col display-1"><h6>"please work"</h6><img src="img/loadbar2.svg" alt="gif">\n</div>');
 
 
     //----------------- BUILDING MOVIE CARDS -----------------------
@@ -67,10 +67,10 @@ function render(){
     getMovies().then((movies)=> {
         let output = '';
         movies.forEach(({title, rating, id, genre, image}) =>{
-            output += '<div id="movieId- title' + id + '" class="movieStats col-sm-12 col-md-3 border border-dark p-0"><h3 class="m-0">' + title + '</h3>';
+            output += '<div id="movieId-' + id + '" class="movieStats col-sm-12 col-md-3 border border-dark p-0"><h3 class="m-0">' + title + '</h3>';
             output += '<p id="rating" class="m-0">Rating: ' + rating + '</p>';
             output += '<p id="genre" class="m-0">Genre: ' + genre + '</p>';
-            output += '<button class="editBtn text-hide" data-toggle="modal" data-target="#editModal"><img src="img/edit.png" alt="" width="25px"></button>';
+            output += '<button id="editButton- title' + id + '" class="editBtn text-hide" data-toggle="modal" data-target="#editModal"><img src="img/edit.png" alt="" width="25px"></button>';
             output += '<button class="deleteBtn btn"><img src="img/delete.png" alt="" width="25px"></button><br>';
             output += `<img class="poster" data-toggle="modal" data-target="#exampleModalCenter" src="${image}"></div>`;
             //Can remove the data-toggle as is for the
@@ -91,11 +91,13 @@ function render(){
             console.log(movieId);
             let formattedTitle = title;
             let formattedRating = rating.slice(8);
-            let formattedId = movieId.split("-")[1];
+            formattedId = movieId.split("-")[1];
+            console.log(formattedId);
 
             $('#editTitle').val(formattedTitle);
             $('#editRating').val(formattedRating);
             $('#editId').val(formattedId);
+
 
         });
 
@@ -107,10 +109,13 @@ function render(){
             let movieId = $(this).parent().attr("id");
             console.log(movieId);
             movieId =  movieId.split("-")[1];
+            console.log(movieId);
             $(this).parent().fadeOut("slow");
             fetch(`./api/movies/${movieId}`, {
                 method: 'DELETE',}
             )
+                // .then(getMovies)
+                // .then(render);
         });
 
 
@@ -182,14 +187,14 @@ const saveNewMovie = (e) => {
 //---------------- EDITING CURRENT MOVIE ----------------
 
 
-const editMovie = (e) => {
+const editMovie = (e, formattedId) => {
     e.preventDefault();
     let movieTitle = $('#editTitle').val();
     console.log(movieTitle);
     let movieRating = $('#editRating').val();
     console.log(movieRating);
-    let movieId = $('#editId').val();
-    console.log(movieId);
+    // let movieId = $('#editId');
+    // console.log(movieId);
     let movieGenre = $('#editGenre').val();
     console.log(movieGenre);
     let newMovie = {
@@ -197,14 +202,14 @@ const editMovie = (e) => {
         "rating": movieRating,
         "genre": movieGenre
     };
-    fetch(`./api/movies/${movieId}`, {
+    fetch(`./api/movies/${formattedId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(newMovie)}
     )
-        // .then(renderMovies);
+        .then(renderMovies);
 };
 
 //------------ ADD NEW MOVIE BUTTON -------
