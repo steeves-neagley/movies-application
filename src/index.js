@@ -92,7 +92,7 @@ function render(){
             let formattedTitle = title;
             let formattedRating = rating.slice(8);
             formattedId = movieId.split("-")[1];
-            console.log(formattedId);
+            console.log('formattedId',formattedId);
 
             $('#editTitle').val(formattedTitle);
             $('#editRating').val(formattedRating);
@@ -193,8 +193,8 @@ const editMovie = (e, formattedId) => {
     console.log(movieTitle);
     let movieRating = $('#editRating').val();
     console.log(movieRating);
-    // let movieId = $('#editId');
-    // console.log(movieId);
+    let movieId = $('#editId').val();
+    console.log('editMovie movieId', movieId);
     let movieGenre = $('#editGenre').val();
     console.log(movieGenre);
     let newMovie = {
@@ -202,7 +202,7 @@ const editMovie = (e, formattedId) => {
         "rating": movieRating,
         "genre": movieGenre
     };
-    fetch(`./api/movies/${formattedId}`, {
+    fetch(`./api/movies/${movieId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
